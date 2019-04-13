@@ -1,0 +1,30 @@
+/*
+header {
+    flex: 1 auto;
+}
+
+footer {
+    flex: 1 auto;
+}
+*/
+header {
+    height: 102px;
+    background-color: salmon;
+}
+
+footer {
+    height: 102px;
+    background-color: blueviolet;
+}
+
+.l {
+    text-align: left;
+}
+
+.c {
+    text-align: center;
+}
+
+.r {
+    text-align:right;
+}

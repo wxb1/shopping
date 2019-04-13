@@ -1,0 +1,10 @@
+div.dropdown-menu.show {
+    position: relative !important;
+    transform: none !important;
+} 
+
+.carousel-inner {
+    left:15% !important;
+    top: 45% !important;
+    width: 70% !important;
+}
