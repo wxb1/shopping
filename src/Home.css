@@ -1,3 +1,50 @@
 .carouseldim {
     height: 400px;
 }
+
+.carouselborder {
+    /*border: 1px solid red;*/
+    height:100%;
+}
+
+.carousel-inner {
+    left: 15% !important;
+    width: 70% !important;
+    height: 100%;
+}
+
+.carouselimage {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+.toggleLeft {
+    /*left: 17%;*/
+}
+
+.toggleLabelLeft {
+    /*padding-left: 17%;*/
+}
+
+span.carousel-control-next-icon, span.carousel-control-prev-icon {
+    background-color: #77a2d0;
+}
+
+ol.carousel-indicators li {
+    background-color: #77a2d0;  
+}
+
+.buttonContainer {
+    display:flex;
+    justify-content: center;
+}
+.buttonLocation {
+    /*left: 45.5%;
+    position: relative;*/
+}
+
+.centerWelcome {
+    text-align: center;
+    padding-bottom: 20px;
+}

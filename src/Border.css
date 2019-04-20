@@ -9,12 +9,12 @@ footer {
 */
 header {
     height: 102px;
-    background-color: salmon;
+    background-color: #007bff;
 }
 
 footer {
     height: 102px;
-    background-color: blueviolet;
+    background-color: #007bff;
 }
 
 .l {
@@ -27,4 +27,8 @@ footer {
 
 .r {
     text-align:right;
+}
+
+.activelink {
+    color: white !important;
 }

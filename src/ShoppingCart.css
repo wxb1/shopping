@@ -6,3 +6,8 @@ input[type="number"].form-control {
 .results {
     display: block;
 }
+
+.thumb {
+    width: 32px;
+    height: 32px;
+}

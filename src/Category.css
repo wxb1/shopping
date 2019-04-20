@@ -3,8 +3,15 @@ div.dropdown-menu.show {
     transform: none !important;
 } 
 
+.cardSize {
+    width: 128px;
+    height: 128px;
+}
+
+/*
 .carousel-inner {
     left:15% !important;
     top: 45% !important;
     width: 70% !important;
 }
+*/
