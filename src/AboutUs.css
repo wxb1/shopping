@@ -1,0 +1,28 @@
+
+.rowContainer {
+    height: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.aboutContainer {
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.aboutCell {
+    display: inline;
+}
+
+.borderCell {
+}
+
+.aboutBackground {
+    background-size: cover;
+}
+
+.aboutCard {
+    width: 18rem!important;
+    border-color: white!important;
+}

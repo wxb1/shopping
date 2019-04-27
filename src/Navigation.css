@@ -2,3 +2,7 @@ nav.navbar {
     margin-left: -15px;
     margin-right: -15px;
 }
+
+.centerCounter {
+    right: -12px !important;
+}

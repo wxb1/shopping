@@ -20,6 +20,12 @@ import { NavLink } from 'react-router-dom';
     3e. Product page will contain a button to go back to the Shopping page 
 */
 
+/*
+<NavLink to={{pathname: "/"}} >
+<Button variant="primary" >Back</Button>
+</NavLink>
+*/
+
 export class ProductDetail extends React.Component {
 
     constructor(props) {
@@ -36,15 +42,27 @@ export class ProductDetail extends React.Component {
         
         let params = new URLSearchParams(this.props.location.search);
         let item = this.props.all[params.get("id")];
-
+//<Image className="productimage w-100" src={item.imagelink} rounded />
+        
+        /*rubric35*user should see name of selected product*/
+        /*rubric36*user should see image of selected product*/
+        /*rubric37*user should see rating of selected product*/
+        /*rubric38*user should see number in stock of selected product*/
+        /*rubric39*user should see price of selected product*/
+        /*rubric40*user should see description of selected product*/
+        /*rubric41*user should see button labeled "Add"*/
+        /*rubric42*user should see an input field labeled "Qty"*/
+        /*rubric41*user should see button labeled "Back"*/
         return ( 
             <Container fluid={true} >
                 <Row>
                     <Col>
-                        <NavLink to={{pathname: "/"}} >
-                            <Button variant="primary" >Back</Button>
-                        </NavLink>
-                        <Image className="productimage w-100" src={item.imagelink} rounded />
+                        <Button variant="primary" onClick={(e)=>{
+                            /*rubric45*user clicks "Back" button and moves back to previous page*/
+                            e.preventDefault();
+                            this.props.history.goBack();
+                        }}>Back</Button>
+                        <Image className="productimage" src={item.imagelink} rounded />
                     </Col>
                     <Col>
                         <Form>
@@ -59,6 +77,7 @@ export class ProductDetail extends React.Component {
                                 }}/>
                             </Form.Group>
                             <Button variant="primary" type="submit" onClick={(e)=>{
+                               /*rubric44*user clicks "Add" button adds number of units specified in "Qty"*/
                                 e.preventDefault();
                                 this.props.onAddCurrentItemToCart(item.id);
                             }}>

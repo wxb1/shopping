@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 import './Category.css';
 import Form from 'react-bootstrap/FormControl';
 import FormCheck from 'react-bootstrap/FormCheck';
-
+import { NavLink } from 'react-router-dom';
 
 /*
     2a. Shopping Page will contain a collapsible category menu
@@ -19,22 +19,26 @@ export class Category extends React.Component {
 
   render() {
 
+      /*rubric19*user shall see category menu that displays all the categories*/
       let categories = Object.keys(this.props.categorized).map((category)=>{
 
             let subCategories = Object.keys(this.props.categorized[category]).map((subCategory)=>{
+
+                /*rubric26*user clicks subcategory repopulates grid with subcategory items*/
                 return (<Dropdown.Item eventKey="2" onClick={(e)=>{
                     e.preventDefault();
                     this.props.onSetCurrentCategory(category,subCategory);
                 }}>{subCategory}</Dropdown.Item>);
             });
 
+            /*rubric25*user clicks on category name toggles a subcategory dropdown*/
             return (<Row>
             <Col>
-                <Dropdown>
-                    <Dropdown.Toggle>
+                <Dropdown >
+                    <Dropdown.Toggle variant="link">
                         {category}
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu className="categoryDropdownMenu">
                         {subCategories}           
                     </Dropdown.Menu>
                 </Dropdown>
@@ -42,13 +46,31 @@ export class Category extends React.Component {
         </Row>);
       })
 
+      //<Card.Header>{item.description}</Card.Header>
+      //<NavLink to={{ pathname: "/productdetail", search: `?id=${item.id}` }}>{item.name}</NavLink>
+  //<NavLink to={{ pathname: "/productdetail", search: `?id=${item.id}` }}> 
+
+    /*rubric21*users shall see name of product displayed*/
+    /*rubric22*users shall see price of product displayed*/
+    /*rubric23*users shall see image of product displayed*/
+    /*rubric24*users shall see a button labeled Add displayed*/
+    /*rubric30*user clicks add button and 1 unit product added*/
+    /*rubric31*user clicks on product image taken to product page with details shown*/
+    /*rubric32*user clicks on product name taken to product page with details shown*/
+    /*rubric46*shopping page is accessible at http://localhost:8080/#/product?name=productname*/
     let categoryItems = this.props.currentCategory.map((id)=>{
+
         let item = this.props.all[id];
         return (
         <Card>
-            <Card.Header>{item.description}</Card.Header>
-            <Card.Img src={item.imagelink} className="cardSize" />
-            <Card.Footer><Button variant="primary" onClick={(e)=>{
+            <Card.Title>
+                <NavLink to={{ pathname: "/product", search: `?id=${item.id}` }}>{item.name}</NavLink>
+            </Card.Title>
+            <Card.Subtitle>{item.description}</Card.Subtitle>
+            <NavLink to={{ pathname: "/product", search: `?id=${item.id}` }}> 
+                <Card.Img src={item.imagelink} className="cardSize" />
+            </NavLink>
+            <Card.Footer><Card.Text>{item.price}</Card.Text><Button variant="primary" onClick={(e)=>{
                                 e.preventDefault();
                                 this.props.onAddItemToCart(item.id);
                             }}>Add</Button></Card.Footer>
@@ -56,13 +78,27 @@ export class Category extends React.Component {
         );
     });
 
+    /*rubric18*user shall see drop down list labeled SortBy with options (None,Price,Alphabetical,Rating)*/
     let sortOptions = this.props.sortAction.map((sortOption)=>{
+        /*rubric33*user select sort method and should recorder products grid*/
         return (<Dropdown.Item onClick={(e)=>{
             e.preventDefault();
             this.props.onSortCurrentCategoryItems(sortOption.sortNumber);
         }}>{sortOption.sortName}</Dropdown.Item>);
     });
 
+    /*rubric15*user shall see control bar section that shows the categeory name*/
+    /*rubric16*user shall see control bar section that displays total number of items in category*/
+    /*rubric27*user clicks subcategory name of selected category shows in control bar*/
+    /*rubric28*user shall see number of items of total items in category when subcategory or in stock selected*/
+    /*rubric29*user clicks "in stock only" then only in stock items should display*/
+    let category = this.props.currentCategoryInfo.category;
+    let subCategory = this.props.currentCategoryInfo.subCategory;      
+    let categoryInformation = (category.length > 0) ? `Showing ${this.props.currentCategory.length} of ${this.props.categorized[category][subCategory].length} in ${subCategory}` : "";
+
+    /*rubric14*user shall see a controls bar*/
+    /*rubric17*user shall see toggle switch labeled "In Stock Only"*/
+    /*rubric20*user shall see a grid products of selected category*/
     return ( 
         <Container fluid={true} >
             <Row>
@@ -75,7 +111,10 @@ export class Category extends React.Component {
                     <Container>
                         <Row>
                             <Col>
-                            <FormCheck.Label>In Stock Only</FormCheck.Label><FormCheck.Input type="checkbox" onChange={(e)=>{
+                            {categoryInformation}
+                            </Col>
+                            <Col>
+                            <FormCheck.Input type="checkbox" onChange={(e)=>{
                                 
                                 let checked = e.target.checked;
                                 
@@ -85,11 +124,11 @@ export class Category extends React.Component {
                                     this.props.onUnfilterCurrentCategoryItems();
                                 }
 
-                            }}/>
+                            }}/><FormCheck.Label>In Stock Only</FormCheck.Label>
                             </Col>
                             <Col>
                                 <Dropdown>
-                                    <Dropdown.Toggle>
+                                    <Dropdown.Toggle variant="link">
                                         Sort By
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
@@ -100,7 +139,7 @@ export class Category extends React.Component {
                         </Row>
                         <Row>
                             <Col>
-                                <CardColumns>
+                                <CardColumns className="cardsContainter">
                                     {categoryItems}
                                 </CardColumns>
                             </Col>
@@ -118,6 +157,22 @@ export class Category extends React.Component {
 //export default Category;
 
 /*
+ <FormCheck.Input className="toggleLeft" type="checkbox" onChange={(e)=>{
+                                    
+                                  
+                                    let checked = e.target.checked;
+                                    
+                                    if ( checked ) {
+                                        this.props.onPlayCarousel();
+                                    } else {  
+                                        this.props.onPauseCarousel();
+                                    }
+
+                                }}/> <FormCheck.Label className="toggleLabelLeft">Toggle Slide Show</FormCheck.Label>
+
+
+
+
                         <Row>
                             <Col>
                                 <Dropdown>

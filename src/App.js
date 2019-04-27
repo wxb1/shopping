@@ -2,18 +2,24 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Border  from './Border';
-import Navigation from './Navigation';
+//import Navigation from './Navigation';
+import NavigationContainer from './NavigationContainer';
 import Main  from './Main';
 import Container from 'react-bootstrap/Container';
 import {BrowserRouter} from 'react-router-dom';
 
+//<Navigation/>
+
 class App extends Component {
+
+   /*rubric68*header bar should always be at top of page*/
+   /*rubric72*footer bar should always be at bottom of page*/
   render() {
     return (
       <Container fluid={true}>
         <BrowserRouter>
         <Border borderStyle="header" />
-        <Navigation/>
+        <NavigationContainer/>
         <Main/>
         <Border borderStyle="footer" />
         </BrowserRouter>

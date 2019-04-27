@@ -2,11 +2,14 @@ import { connect } from "react-redux";
 import { Category } from './Category';
 import { setCurrentCategory } from "./setCurrentCategory";
 import { addCurrentItemToCart } from "./addCurrentItemToCart";
-import { setCurrentItemQuantity } from "./setCurrentItemQuantity";
+//import { setCurrentItemQuantity } from "./setCurrentItemQuantity";
+import { addCurrentItemQuantity } from "./addCurrentItemQuantity";
 import { setCurrentItem } from "./setCurrentItem";
 import { sortCurrentCategoryItems } from "./sortCurrentCategoryItems";
 import { filterCurrentCategoryItems } from "./filterCurrentCategoryItems";
 import { unfilterCurrentCategoryItems } from "./unfilterCurrentCategoryItems";
+
+//dispatch(setCurrentItemQuantity(id,1));
 
 const mapStateToProps = (state) => {
     return {
@@ -14,6 +17,7 @@ const mapStateToProps = (state) => {
         all: state.inventory.all,
         currentCategory: state.inventory.currentCategory,
         sortAction: state.inventory.sortAction,
+        currentCategoryInfo: state.inventory.currentCategoryInfo,
     };
 }
 
@@ -24,7 +28,8 @@ const mapDispatchToProps = (dispatch) => {
         },
         onAddItemToCart: (id) => {
             dispatch(setCurrentItem(id));
-            dispatch(setCurrentItemQuantity(id,1));
+            //dispatch(setCurrentItemQuantity(id,1));
+            dispatch(addCurrentItemQuantity(id,1));
             dispatch(addCurrentItemToCart(id));
           },
           onSortCurrentCategoryItems: (sortNumber) => {

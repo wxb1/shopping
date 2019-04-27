@@ -1,8 +1,9 @@
+/*
 div.dropdown-menu.show {
     position: relative !important;
     transform: none !important;
 } 
-
+*/
 .cardSize {
     width: 128px;
     height: 128px;
@@ -15,3 +16,23 @@ div.dropdown-menu.show {
     width: 70% !important;
 }
 */
+
+.categoryDropdownMenu {
+    position: relative !important;
+    transform: none !important;
+    border: none !important;
+}
+
+div.card-footer > p {
+    display: inline-block;
+}
+
+div.card-footer > button {
+    float: right;
+}
+
+.cardsContainter {
+    width: 1000px;
+    height: 525px;
+    overflow: scroll;
+}
