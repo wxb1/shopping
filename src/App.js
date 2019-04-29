@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 import Border  from './Border';
 //import Navigation from './Navigation';
@@ -7,10 +7,20 @@ import NavigationContainer from './NavigationContainer';
 import Main  from './Main';
 import Container from 'react-bootstrap/Container';
 import {BrowserRouter} from 'react-router-dom';
+//import { addInventoryItemsAsync } from "./addInventoryItemsAsync";
 
 //<Navigation/>
 
+//export class App extends Component {
 class App extends Component {
+
+  componentDidMount() {
+    
+            /*if ( this.props.preview === null || this.props.preview.length === 0 ) {
+                this.props.onAddInventoryItems();
+            }*/
+            
+  }
 
    /*rubric68*header bar should always be at top of page*/
    /*rubric72*footer bar should always be at bottom of page*/

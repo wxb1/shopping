@@ -13,6 +13,7 @@
 
 .aboutCell {
     display: inline;
+    transition: transform 0.3s;
 }
 
 .borderCell {
@@ -25,4 +26,13 @@
 .aboutCard {
     width: 18rem!important;
     border-color: white!important;
+    transition: transform 0.3s;
+}
+
+div.aboutCell:hover {  
+    transform: scale(1.13,1.13);
+}
+
+div.aboutCard:hover {  
+    transform: scale(1.13,1.13);
 }

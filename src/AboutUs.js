@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+//import Col from 'react-bootstrap/Col';
 import './AboutUs.css';
 import aboutImage from './th.jpg';
 import Image from 'react-bootstrap/Image';
@@ -22,7 +22,7 @@ class AboutUs extends React.Component {
         <Container fluid={true} className="rowContainer" >
             <Row className="aboutContainer aboutBackground" style = {backgroundStyle}>
 
-                <Fade in={true} appear={true} timeout={500} >
+                <Fade in={true} appear={true} timeout={1500} >
                 <Card className="aboutCard" border="primary" style={{ width: '18rem' }}>
                     <Card.Header>Who we are</Card.Header>
                     <Card.Body>
@@ -33,11 +33,11 @@ class AboutUs extends React.Component {
                 </Card>
                 </Fade>
 
-                <div className="aboutCell borderCell">
+                <div className="aboutCell borderCell d-none d-lg-inline">
                     <Image src={aboutImage} roundedCircle/>
                 </div>
 
-                <Fade in={true} appear={true} timeout={500} >
+                <Fade in={true} appear={true} timeout={1500} >
                 <Card className="aboutCard" border="primary" >
                     <Card.Header>What we do</Card.Header>
                     <Card.Body>

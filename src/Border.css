@@ -32,3 +32,34 @@ footer {
 .activelink {
     color: white !important;
 }
+
+.footerItem {
+    display: inline;
+}
+
+.contactBorder {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+.footerColumnContainer {
+    column-count: 3;
+    column-rule: 2px ridge white;
+}
+
+.footerColumn {
+    column-span: 1;
+}
+
+.rowBorder {
+    margin-top: 10px;
+}
+
+.bar {
+    width: 4px;
+    height: 20px;
+}
+
+a.activelink:hover {
+    text-decoration: underline;
+}

@@ -26,3 +26,11 @@ input[type="number"].form-control {
 #formBasicEmail {
     width: 15%;
 }
+
+.titleText {
+    font-weight: bold;
+}
+
+.titleRow{
+    margin-bottom: 15px;
+}

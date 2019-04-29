@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import './ShoppingCart.css';
 import Modal from 'react-bootstrap/Modal';
-import InputGroup from 'react-bootstrap/InputGroup';
+//import InputGroup from 'react-bootstrap/InputGroup';
 //import FormExample from './FormExample';
 
 /*
@@ -21,8 +21,8 @@ Cart Page
 4aiv. Quantity (with option to increase and decrease) 
 4av. Line Item Total 
 4avi. Delete Button  
-b. Cart page will contain a cart summary section that lists the subtotal cost, tax cost, and shipping fee. 
-c. Cart page will have a checkout button.
+4b. Cart page will contain a cart summary section that lists the subtotal cost, tax cost, and shipping fee. 
+4c. Cart page will have a checkout button.
  
 */
 
@@ -57,6 +57,9 @@ export class ShoppingCart extends React.Component {
     let cartList = this.props.cart.map((cartItem)=> {
     
         let item = this.props.all[cartItem.id];
+        let cost = item.price * cartItem.quantity;
+
+        //<Col><Form.Label>{item.price * cartItem.quantity}</Form.Label></Col>
 
     return (<Row key={item.id}>
         <Col><Image src={item.imagelink} className= "thumb" thumbnail /></Col>
@@ -67,7 +70,7 @@ export class ShoppingCart extends React.Component {
             this.props.onSetCartItemQuantity(cartItem.id, e.currentTarget.value);
         }} />
         </Col>
-        <Col><Form.Label>{item.price * cartItem.quantity}</Form.Label></Col>
+        <Col><Form.Label>{cost.toFixed(2)}</Form.Label></Col>
         <Col><Button variant="primary" onClick={()=>{
             this.props.onRemoveCartItem(cartItem.id);
         }}>X</Button></Col>
@@ -88,7 +91,6 @@ export class ShoppingCart extends React.Component {
     });
 
     let tax = subtotal * 0.10;
-
     let total = subtotal + tax;
 
     /*rubric48*user should see a form labeled shipping details, with user name, address, city and phone number with placeholders with what they represent*/
@@ -102,7 +104,7 @@ export class ShoppingCart extends React.Component {
             <Row>
                 <Col>
                     <Container fluid={true}>
-                    <Row><Col>Image</Col><Col>Name</Col><Col>Unit Price</Col><Col>Qty</Col><Col>Cost</Col><Col>Remove</Col></Row>
+                    <Row className="titleRow"><Col className="titleText">Image</Col><Col className="titleText">Name</Col><Col className="titleText">Unit Price</Col><Col className="titleText">Qty</Col><Col className="titleText">Cost</Col><Col className="titleText">Remove</Col></Row>
                     {cartList}
                     </Container>
                 </Col>
@@ -146,10 +148,10 @@ export class ShoppingCart extends React.Component {
                                     Please provide a phone number
                                 </Form.Control.Feedback>
                             </Form.Group>            
-                            <Form.Label className="results">Subtotal: {subtotal}</Form.Label>
+                            <Form.Label className="results">Subtotal: {subtotal.toFixed(2)}</Form.Label>
                             <Form.Label className="results">Shipping: FREE</Form.Label>
-                            <Form.Label className="results">Tax(10%): {tax} </Form.Label>
-                            <Form.Label className="results">Total: {total}</Form.Label>
+                            <Form.Label className="results">Tax(10%): {tax.toFixed(2)} </Form.Label>
+                            <Form.Label className="results">Total: {total.toFixed(2)}</Form.Label>
                         </Form.Group>
                         <Button variant="primary" type="submit" >
                             Check Out
@@ -171,7 +173,7 @@ export class ShoppingCart extends React.Component {
                     <Form.Label className="results">{this.props.orderDetails.phoneNumber}</Form.Label>
                 </Modal.Body>
                 <Modal.Footer>
-                        Your total cost is: {this.props.orderDetails.totalCost}
+                        Your total cost is: {this.props.orderDetails.totalCost.toFixed(2)}
                 </Modal.Footer>
             </Modal>
         </Container>

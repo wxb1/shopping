@@ -8,6 +8,7 @@ const uuidv4 = {};
 
 const inventory = (state = { all:[], preview:[], cart:[], categorized: { }, current: { }, currentCategory: [], 
   carouselInterval: null,
+  sortNumber: 0,
   sortAction: [
   { sortName: "None", sortNumber: 0 },
   { sortName: "Price", sortNumber: 1 },
@@ -35,7 +36,7 @@ orderDetails: {
 contact: { 
   name: "", 
   email: "", 
-  subject: "", 
+  subject: "Technical Support", 
   message: ""
 },
 canShowContactMessage: false,
@@ -200,6 +201,7 @@ contactDetails: {
         let stock = null;
         let quantity = null;
 
+        //http://localhost:3000/product?id=14
         //if ( id === state.current.id ) {
         if ( id == state.current.id ) {
             stock = state.current.stock;
@@ -210,11 +212,28 @@ contactDetails: {
             });
 
             let item = state.all[id];
-            quantity = cartItem ? cartItem.quantity : 0;
-            stock = cartItem ? cartItem.stock : item.stock;
+
+            if (cartItem !== null && cartItem !== undefined && item !== null && item !== undefined) {
+              quantity = cartItem ? cartItem.quantity : 0;
+              stock = cartItem ? cartItem.stock : item.stock;
+             } else if (item !== null && item !== undefined) {
+              quantity =  0;
+              stock =  item.stock;
+             } else {
+               id = null;
+             }
+            
+            /*else {
+              id = null;
+              stock = null;
+              quantity = null;
+            }*/
+
         }
 
-        newState.current = { id, stock, quantity };
+        if ( id !== null && id !== undefined) {
+          newState.current = { id, stock, quantity };
+        }
   
       }
       break;
@@ -320,7 +339,7 @@ contactDetails: {
         newState.cart = [];
       }
       break;
-      case REDUCER_CONSTANTS.SET_CURRENT_CATEGORY: {
+      case REDUCER_CONSTANTS.SET_CURRENT_CATEGORY:
 
         newState = {};
         newState = Object.assign(newState,state);
@@ -332,9 +351,8 @@ contactDetails: {
         newState.currentCategoryInfo.subCategory = action.subCategory;
         newState.currentCategory = [...newState.categorized[action.category][action.subCategory]];
 
-      }
       break;
-      case REDUCER_CONSTANTS.SORT_CURRENT_CATEGORY_ITEMS: {
+      case REDUCER_CONSTANTS.SORT_CURRENT_CATEGORY_ITEMS: 
 
         newState = {};
         newState = Object.assign(newState,state);        
@@ -348,25 +366,25 @@ contactDetails: {
           let value2 = 0;
 
           switch(action.sortNumber) {
-            case 0: {
+            case 0: 
               value1 = item1.id;
               value2 = item2.id;
-            }
+            
             break;
-            case 1:{
+            case 1:
               value1 = item1.price;
               value2 = item2.price;
-            }
+            
             break;
-            case 2:{
+            case 2:
               value1 = item1.name;
               value2 = item2.name;
-            }
+            
             break;
-            case 3: {
+            case 3: 
               value1 = item1.rating;
               value2 = item2.rating;
-            }
+            
             break;
             default: {
               value1 = item1.id;
@@ -387,10 +405,11 @@ contactDetails: {
 
         });
 
+        newState.sortNumber = action.sortNumber;
         newState.currentCategory = [...newState.currentCategory];
-      }
+      
       break;
-      case REDUCER_CONSTANTS.FILTER_CURRENT_CATEGORY_ITEMS: {
+      case REDUCER_CONSTANTS.FILTER_CURRENT_CATEGORY_ITEMS: 
 
         newState = {};
         newState = Object.assign(newState,state);        
@@ -403,7 +422,6 @@ contactDetails: {
 
         newState.currentCategory = [...newState.currentCategory];
 
-      }
       break;
       case REDUCER_CONSTANTS.UNFILTER_CURRENT_CATEGORY_ITEMS: {
 
@@ -415,105 +433,103 @@ contactDetails: {
 
       }
       break;
-      case REDUCER_CONSTANTS.PAUSE_CAROUSEL: {
+      case REDUCER_CONSTANTS.PAUSE_CAROUSEL: 
 
         newState = {};
         newState = Object.assign(newState,state); 
         newState.carouselInterval = null; 
   
-        }
         break;
-        case REDUCER_CONSTANTS.PLAY_CAROUSEL: {
+        case REDUCER_CONSTANTS.PLAY_CAROUSEL: 
 
           newState = {};
           newState = Object.assign(newState,state); 
           newState.carouselInterval = 3000; 
     
-          }
           break;
-          case REDUCER_CONSTANTS.SET_CAN_SHOW_CHECKOUT_MESSAGE: {
+          case REDUCER_CONSTANTS.SET_CAN_SHOW_CHECKOUT_MESSAGE: 
 
             newState = {};
             newState = Object.assign(newState,state);
         
             newState.canShowCheckoutMessage = action.canShowCheckoutMessage;
 
-          }
+          
           break;
-          case REDUCER_CONSTANTS.SET_CUSTOMER_NAME: {
+          case REDUCER_CONSTANTS.SET_CUSTOMER_NAME: 
 
             newState = {};
             newState = Object.assign(newState,state);
         
             newState.customer = Object.assign({},newState.customer);
             newState.customer.name = action.customerName;
-          } 
+           
           break;       
-          case REDUCER_CONSTANTS.SET_CUSTOMER_ADDRESS: {
+          case REDUCER_CONSTANTS.SET_CUSTOMER_ADDRESS: 
             
             newState = {};
             newState = Object.assign(newState,state);
 
             newState.customer = Object.assign({},newState.customer);
             newState.customer.address = action.customerAddress;
-          } 
+           
           break;       
-          case REDUCER_CONSTANTS.SET_CUSTOMER_CITY: {
+          case REDUCER_CONSTANTS.SET_CUSTOMER_CITY: 
 
             newState = {};
             newState = Object.assign(newState,state);
         
             newState.customer = Object.assign({},newState.customer);
             newState.customer.city = action.customerCity;
-          } 
+           
           break;         
-          case REDUCER_CONSTANTS.SET_CUSTOMER_PHONENUMBER: {
+          case REDUCER_CONSTANTS.SET_CUSTOMER_PHONENUMBER: 
 
             newState = {};
             newState = Object.assign(newState,state);
         
             newState.customer = Object.assign({},newState.customer);
             newState.customer.phoneNumber = action.customerPhoneNumber;
-          } 
+           
           break;  
           //////////////////////////////////////////////////////////////////
-          case REDUCER_CONSTANTS.SET_CONTACT_NAME: {
+          case REDUCER_CONSTANTS.SET_CONTACT_NAME: 
 
             newState = {};
             newState = Object.assign(newState,state);
         
             newState.contact = Object.assign({},newState.contact);
             newState.contact.name = action.contactName;
-          } 
+           
           break;       
-          case REDUCER_CONSTANTS.SET_CONTACT_EMAIL: {
+          case REDUCER_CONSTANTS.SET_CONTACT_EMAIL: 
             
             newState = {};
             newState = Object.assign(newState,state);
 
             newState.contact = Object.assign({},newState.contact);
             newState.contact.email = action.contactEmail;
-          } 
+           
           break;       
-          case REDUCER_CONSTANTS.SET_CONTACT_SUBJECT: {
+          case REDUCER_CONSTANTS.SET_CONTACT_SUBJECT: 
 
             newState = {};
             newState = Object.assign(newState,state);
         
             newState.contact = Object.assign({},newState.contact);
             newState.contact.subject = action.contactSubject;
-          } 
+           
           break;         
-          case REDUCER_CONSTANTS.SET_CONTACT_MESSAGE: {
+          case REDUCER_CONSTANTS.SET_CONTACT_MESSAGE: 
 
             newState = {};
             newState = Object.assign(newState,state);
         
             newState.contact = Object.assign({},newState.contact);
             newState.contact.message = action.contactMessage;
-          } 
+          
           break;
-          case REDUCER_CONSTANTS.SEND_CONTACT_INFORMATION: {
+          case REDUCER_CONSTANTS.SEND_CONTACT_INFORMATION: 
 
             newState = {};
             newState = Object.assign(newState,state);
@@ -521,18 +537,18 @@ contactDetails: {
             newState.canShowContactMessage = true;
     
             newState.contactDetails = newState.contact;
-            newState.contact = { name: "", email: "", subject: "", message: "" };
+            newState.contact = { name: "", email: "", subject: "Technical Support", message: "" };
 
-          }
+          
           break;
-          case REDUCER_CONSTANTS.SET_CAN_SHOW_CONTACT_MESSAGE: {
+          case REDUCER_CONSTANTS.SET_CAN_SHOW_CONTACT_MESSAGE: 
 
             newState = {};
             newState = Object.assign(newState,state);
         
             newState.canShowContactMessage = action.canShowContactMessage;
 
-          }
+          
           break;  
     default:
       newState = state;
@@ -540,6 +556,7 @@ contactDetails: {
   return newState;
 }
 
+/*
 const messageList = (state = [], action) => {
   let newState = state;
 
@@ -608,6 +625,7 @@ const messageList = (state = [], action) => {
   };
 */
 
+/*
   //let messageName = "@@@@@@";
   let messageName = null;
   let securityQuestion = "";
@@ -984,6 +1002,8 @@ const messageList = (state = [], action) => {
       return newState;
     };
 */
+
+/*
     const managerControlType  = (state = {managerControlType: 'Message'}, action) => {
     
       let newState = state;
@@ -1112,7 +1132,7 @@ const messageList = (state = [], action) => {
 
                 }
                 */
-
+/*
                 for(let i=0; i < action.transfer.source.length; i++) {
                   if ( !mapSource.has(action.transfer.source[i].guid)) {
                     mapSource.set(action.transfer.source[i].guid,action.transfer.source[i]);
@@ -1455,7 +1475,7 @@ const messageList = (state = [], action) => {
                   newState.contactUsList.push(action.contact);
   
               } while(false);
-              
+    /*          
             break;
             case REDUCER_CONSTANTS.CLEAR_CONTACT_SIGNUP:
               newState = {};
@@ -1483,13 +1503,14 @@ const messageList = (state = [], action) => {
           }
           return newState;
         }
+*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //const reducer = combineReducers({
 const appReducer = combineReducers({
   inventory,
-  message,
+ /* message,
   mediaControlType,
   mediaControlState,
   mediaVideo,
@@ -1503,7 +1524,7 @@ const appReducer = combineReducers({
   login,
   contact,
   masterContactUs,
-  sessionData,
+  sessionData,*/
 });
 
 const reducer = (state, action) => {

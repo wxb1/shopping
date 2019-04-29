@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import './Home.css';
 import { NavLink } from 'react-router-dom';
-import Form from 'react-bootstrap/FormControl';
+//import Form from 'react-bootstrap/FormControl';
 import FormCheck from 'react-bootstrap/FormCheck';
 
 /*
@@ -25,16 +25,20 @@ import FormCheck from 'react-bootstrap/FormCheck';
 */
 export class Home extends React.Component {
 
+    /*
     constructor(props) {
         super(props);
     }
+*/
 
-    componentDidMount() {
-
+/*
+componentDidMount() {
         if ( this.props.preview === null || this.props.preview.length === 0 ) {
             this.props.onAddInventoryItems();
-        }
-    }
+        } 
+
+}*/
+
 //<img className="d-block w-100" src={item.imageLink} alt="First slide" />
 //<NavLink to={{ pathname: "/productdetail", search: `?id=${item.id}` }}> 
 
@@ -42,13 +46,15 @@ export class Home extends React.Component {
   /*rubric46*shopping page is accessible at http://localhost:8080/#/product?name=productname*/
   render() {
         let CarouselItems = this.props.preview.map((item)=>{
-        let href = `/productdetail?id=${item.id}`;
+        //let href = `/productdetail?id=${item.id}`;
         return (<Carousel.Item key={item.id} className="carouselborder">
             <NavLink to={{ pathname: "/product", search: `?id=${item.id}` }}>                        
                 <img className="d-block h-100 carouselimage" src={item.imagelink} alt="First slide" />
             </NavLink>
         </Carousel.Item>);
     });
+
+    let toggleCarousel = (this.props.carouselInterval > 0) ? true : false;
 
     /*rubric01*user should see carousel with >=3 slides, with 1-4 images*/
     /*rubric02*user should see left arrow button left of carousel*/
@@ -65,7 +71,7 @@ export class Home extends React.Component {
         <Container fluid={true} >
             <Row>
                 <Col>
-                   <FormCheck.Input className="toggleLeft" type="checkbox" onChange={(e)=>{
+                   <FormCheck.Input className="toggleLeft" type="checkbox" checked={toggleCarousel} onChange={(e)=>{
                                     
                                     /*rubricd10*if toggle slide show checked then slide will move forward 1 per 3s*/
                                     let checked = e.target.checked;

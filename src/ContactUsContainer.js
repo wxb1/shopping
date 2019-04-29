@@ -39,8 +39,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-const ContactUsContainer = connect(mapStateToProps,mapDispatchToProps)
-(
+const ContactUsContainer = connect(mapStateToProps,mapDispatchToProps)(
     ContactUs
 );
 

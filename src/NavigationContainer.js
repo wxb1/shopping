@@ -14,8 +14,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-const NavigationContainer = connect(mapStateToProps,mapDispatchToProps)
-(
+const NavigationContainer = connect(mapStateToProps,mapDispatchToProps)(
     Navigation
 );
 

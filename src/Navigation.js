@@ -25,6 +25,23 @@ class Navigation extends React.Component {
 /*
 <Nav.Link><NavLink to={{pathname: "/category"}}>Shop All</NavLink></Nav.Link>
 */
+/*
+          <Nav.Link><NavLink to={{pathname: "/"}}>Home</NavLink></Nav.Link>
+          <Nav.Link><NavLink to={{pathname: "/shopping"}}>Shop All</NavLink></Nav.Link>
+          <NavLink to={{pathname: "/"}}>Home</NavLink>
+          <NavLink to={{pathname: "/shopping"}}>Shop All</NavLink>
+          <span class="fa-layers-counter fa-2x centerCounter" data-fa-transform="right-100">{totalQuantity}</span>
+
+                  <Nav.Link>
+          <NavLink to={{pathname: "/cart"}}>
+          <span className="fa-layers fa-fw">
+            <FontAwesomeIcon icon={faShoppingCart} size="2x" color="#77a2d0" />
+            <span className="fa-layers-counter fa-2x centerCounter" data-fa-transform="right-100">{totalQuantity}</span>
+          </span>
+        </NavLink>
+        </Nav.Link>
+*/
+
     /*rubric13*home page is accessible at http://localhost:8080/#*/
     /*rubric34*shopping page is accessible at http://localhost:8080/#/shopping*/
     /*rubric65*user should see link to home page*/
@@ -37,18 +54,16 @@ class Navigation extends React.Component {
     <Navbar bg="light" expand="lg">
       <Navbar.Brand ><Image src={grocerycloud3} width="auto" height="30px" className="d-inline-block align-top"></Image></Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link><NavLink to={{pathname: "/"}}>Home</NavLink></Nav.Link>
-          <Nav.Link><NavLink to={{pathname: "/shopping"}}>Shop All</NavLink></Nav.Link>
+          <NavLink className="nav-link linkColor" to={{pathname: "/"}}>Home</NavLink>
+          <NavLink className="nav-link linkColor" to={{pathname: "/shopping"}}>Shop All</NavLink>
         </Nav>
         <Nav className="justify-content-end">
-        <Nav.Link>
-          <NavLink to={{pathname: "/cart"}}>
-          <span className="fa-layers fa-fw">
-            <FontAwesomeIcon icon={faShoppingCart} size="2x" color="#77a2d0" />
-            <span class="fa-layers-counter fa-2x centerCounter" data-fa-transform="right-100">{totalQuantity}</span>
-          </span>
-        </NavLink>
-        </Nav.Link>
+          <NavLink className="nav-link" to={{pathname: "/cart"}}>
+            <span className="fa-layers fa-fw">
+              <FontAwesomeIcon icon={faShoppingCart} size="2x" color="#77a2d0" />
+              <span className="fa-layers-counter fa-2x centerCounter" data-fa-transform="right-100">{totalQuantity}</span>
+            </span>
+          </NavLink>
         </Nav>
       </Navbar>);
 

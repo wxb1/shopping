@@ -7,12 +7,16 @@ import CardColumns from 'react-bootstrap/CardColumns';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import './Category.css';
-import Form from 'react-bootstrap/FormControl';
 import FormCheck from 'react-bootstrap/FormCheck';
 import { NavLink } from 'react-router-dom';
 
 /*
     2a. Shopping Page will contain a collapsible category menu
+    2b. Shopping page will display items based on the selected category and filters 
+    2c. Shopping page will contain a settings bar that allows the user to do the following: 
+    2i. Sort items by price 
+    2ii. Show only stocked items 
+    2iii. Filter items by price (not in rubric?)
 */
 
 export class Category extends React.Component {
@@ -25,14 +29,14 @@ export class Category extends React.Component {
             let subCategories = Object.keys(this.props.categorized[category]).map((subCategory)=>{
 
                 /*rubric26*user clicks subcategory repopulates grid with subcategory items*/
-                return (<Dropdown.Item eventKey="2" onClick={(e)=>{
+                return (<Dropdown.Item key={subCategory} eventKey="2" onClick={(e)=>{
                     e.preventDefault();
                     this.props.onSetCurrentCategory(category,subCategory);
                 }}>{subCategory}</Dropdown.Item>);
             });
 
             /*rubric25*user clicks on category name toggles a subcategory dropdown*/
-            return (<Row>
+            return (<Row key={category}>
             <Col>
                 <Dropdown >
                     <Dropdown.Toggle variant="link">
@@ -62,11 +66,11 @@ export class Category extends React.Component {
 
         let item = this.props.all[id];
         return (
-        <Card>
-            <Card.Title>
+        <Card className="cardBox">
+            <Card.Title className="cardTitle">
                 <NavLink to={{ pathname: "/product", search: `?id=${item.id}` }}>{item.name}</NavLink>
             </Card.Title>
-            <Card.Subtitle>{item.description}</Card.Subtitle>
+            <Card.Subtitle className="cardSubtitle">{item.description}</Card.Subtitle>
             <NavLink to={{ pathname: "/product", search: `?id=${item.id}` }}> 
                 <Card.Img src={item.imagelink} className="cardSize" />
             </NavLink>
@@ -95,6 +99,10 @@ export class Category extends React.Component {
     let category = this.props.currentCategoryInfo.category;
     let subCategory = this.props.currentCategoryInfo.subCategory;      
     let categoryInformation = (category.length > 0) ? `Showing ${this.props.currentCategory.length} of ${this.props.categorized[category][subCategory].length} in ${subCategory}` : "";
+
+    let sortNumber = this.props.sortNumber;
+    let sortAction = this.props.sortAction[sortNumber];
+    let sortName = sortAction.sortName;
 
     /*rubric14*user shall see a controls bar*/
     /*rubric17*user shall see toggle switch labeled "In Stock Only"*/
@@ -129,7 +137,7 @@ export class Category extends React.Component {
                             <Col>
                                 <Dropdown>
                                     <Dropdown.Toggle variant="link">
-                                        Sort By
+                                        Sort By - {sortName}
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         {sortOptions}

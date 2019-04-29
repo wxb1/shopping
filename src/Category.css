@@ -21,6 +21,17 @@ div.dropdown-menu.show {
     position: relative !important;
     transform: none !important;
     border: none !important;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+@media only screen and (max-width: 1200px) {
+
+.categoryDropdownMenu {
+    position: absolute !important;
+    transform: translate3d(0px, 38px, 0px) !important;
+    border: 1px solid rgba(182, 120, 120, 0.15) !important;
+    background-color: rgba(255, 255, 255, 1); 
+}
 }
 
 div.card-footer > p {
@@ -31,8 +42,44 @@ div.card-footer > button {
     float: right;
 }
 
+/*
 .cardsContainter {
     width: 1000px;
     height: 525px;
     overflow: scroll;
 }
+*/
+
+.cardsContainter {
+    height: 525px;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cardBox {
+    width: 300px !important;
+    margin: 5px !important;
+    height: 330px !important;
+}
+
+.cardTitle {
+    height:51px;
+}
+
+.cardSubtitle {
+    height: 80px;
+}
+
+@media only screen and (max-width: 1200px) {
+    
+    .cardsContainter {
+        height: 360px;
+        overflow: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+  }

@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Image from 'react-bootstrap/Image';
+//import Image from 'react-bootstrap/Image';
 import Modal from 'react-bootstrap/Modal';
 
 
@@ -100,7 +100,7 @@ class ContactUs extends React.Component {
                 </Modal.Header>
                 <Modal.Body>
                     <Form.Label className="results">Hi {this.props.contactDetails.name}!</Form.Label>
-                    <Form.Label className="results">Thank you for your interest in cloud!</Form.Label>
+                    <Form.Label className="results">Thank you for your interest in grocery cloud!</Form.Label>
                     <Form.Label className="results">Someone will contact you about your comments/questions concerning {this.props.contactDetails.subject}</Form.Label>
                     <Form.Label className="results">An e-mail response will be sent to {this.props.contactDetails.email} as soon as possible.</Form.Label>
                 </Modal.Body>

@@ -7,6 +7,10 @@ import { NavLink } from 'react-router-dom';
 import  Image from 'react-bootstrap/Image';
 import grocerycloud3 from './grocerycloud3.png';
 import Nav from 'react-bootstrap/Nav';
+import barr from './barr.png';
+import barl from './barl.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopyright } from '@fortawesome/free-solid-svg-icons';
 
 /*
 Header 
@@ -60,9 +64,9 @@ class Border extends React.Component {
                       <Row as={'footer'}>
                         <Col>
                           <Container>
-                            <Row><Col className="l"><Nav.Link className="activelink" href="mailto:support@grocerycloud.com">support@grocerycloud.com</Nav.Link></Col><Col className="c"><NavLink className="activelink nav-link" to="/contact">Contact Us</NavLink></Col><Col className="r"><NavLink className="activelink nav-link" to="/about">About Us</NavLink></Col></Row>
+                            <Row className="justify-content-xl-center rowBorder"><Col xl="5"><Nav.Link className="activelink footerItem" href="mailto:support@grocerycloud.com">support@grocerycloud.com</Nav.Link><Image className="bar" src={barr} /><NavLink className="activelink nav-link footerItem" to="/contact">Contact Us</NavLink><Image className="bar" src={barl} /><NavLink className="activelink nav-link footerItem" to="/about">About Us</NavLink></Col></Row>
                             <Row><Col className="c"><NavLink className="activelink nav-link" to="/" >Grocery Cloud</NavLink></Col></Row>
-                            <Row><Col className="c">Copyright 2019</Col></Row>
+                            <Row><Col className="c"><FontAwesomeIcon icon={faCopyright} size="sm" />2019</Col></Row>
                           </Container>
                         </Col>
                       </Row>
@@ -89,4 +93,14 @@ render() {
     return border;
 
   }
+
+
+  <Row><Col className="l"><Nav.Link className="activelink" href="mailto:support@grocerycloud.com">support@grocerycloud.com</Nav.Link></Col><Col className="c"><NavLink className="activelink nav-link" to="/contact">Contact Us</NavLink></Col><Col className="r"><NavLink className="activelink nav-link" to="/about">About Us</NavLink></Col></Row>
+                            <Row><Col className="c"><NavLink className="activelink nav-link" to="/" >Grocery Cloud</NavLink></Col></Row>
+                            <Row><Col className="c">Copyright 2019</Col></Row>
+
+                            <Row className="justify-content-lg-center"><Col lg="5"><Nav.Link className="activelink footerItem" href="mailto:support@grocerycloud.com">support@grocerycloud.com</Nav.Link><NavLink className="activelink nav-link footerItem contactBorder" to="/contact">Contact Us</NavLink><NavLink className="activelink nav-link footerItem" to="/about">About Us</NavLink></Col></Row>
+
+                            <Row className="justify-content-lg-center"><Col className="footerColumnContainer" lg="5"><Nav.Link className="activelink footerColumn" href="mailto:support@grocerycloud.com">support@grocerycloud.com</Nav.Link><NavLink className="activelink nav-link footerColumn" to="/contact">Contact Us</NavLink><NavLink className="activelink nav-link footerColumn" to="/about">About Us</NavLink></Col></Row>
+
 */

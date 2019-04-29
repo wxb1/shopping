@@ -6,3 +6,11 @@ nav.navbar {
 .centerCounter {
     right: -12px !important;
 }
+
+.linkColor {
+    color: #007bff !important;
+}
+
+a.linkColor:hover {
+    text-decoration: underline;
+}

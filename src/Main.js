@@ -4,7 +4,7 @@ import './Main.css';
 import HomeContainer from  './HomeContainer';
 //import Category from './Category';
 import CategoryContainer from './CategoryContainer';
-import Product from './Product';
+//import Product from './Product';
 //import ProductDetail from './ProductDetail';
 import ProductDetailContainer from './ProductDetailContainer';
 //import ShoppingCart from './ShoppingCart';

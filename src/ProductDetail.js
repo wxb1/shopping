@@ -6,7 +6,7 @@ import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './ProductDetails.css';
-import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
 
 /*
     3a. Product page will contain an image of the product 
@@ -28,20 +28,40 @@ import { NavLink } from 'react-router-dom';
 
 export class ProductDetail extends React.Component {
 
+    /*
     constructor(props) {
         super(props);
     }
-
+*/
     componentDidMount () {
         let params = new URLSearchParams(this.props.location.search);
         let id = params.get("id");
         this.props.onSetCurrentItem(id);
     }
 
+    componentDidUpdate() {
+        let params = new URLSearchParams(this.props.location.search);
+        let id = params.get("id");
+
+        if (this.props.current.id != id) {
+            this.props.onSetCurrentItem(id);
+        }
+    }
+
     render() {
         
         let params = new URLSearchParams(this.props.location.search);
+        //let id = params.get("id")
         let item = this.props.all[params.get("id")];
+
+        if ( item === null || item === undefined) {
+            item = { };
+        } 
+        
+        /*else if ( item.id !== id) {
+            this.props.onSetCurrentItem(id);
+        }*/
+
 //<Image className="productimage w-100" src={item.imagelink} rounded />
         
         /*rubric35*user should see name of selected product*/

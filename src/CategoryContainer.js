@@ -18,6 +18,7 @@ const mapStateToProps = (state) => {
         currentCategory: state.inventory.currentCategory,
         sortAction: state.inventory.sortAction,
         currentCategoryInfo: state.inventory.currentCategoryInfo,
+        sortNumber: state.inventory.sortNumber,
     };
 }
 
@@ -44,8 +45,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-const CategoryContainer = connect(mapStateToProps,mapDispatchToProps)
-(
+const CategoryContainer = connect(mapStateToProps,mapDispatchToProps)(
     Category
 );
 
