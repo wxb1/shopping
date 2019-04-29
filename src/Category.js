@@ -85,7 +85,7 @@ export class Category extends React.Component {
     /*rubric18*user shall see drop down list labeled SortBy with options (None,Price,Alphabetical,Rating)*/
     let sortOptions = this.props.sortAction.map((sortOption)=>{
         /*rubric33*user select sort method and should recorder products grid*/
-        return (<Dropdown.Item onClick={(e)=>{
+        return (<Dropdown.Item key={sortOption.sortName} onClick={(e)=>{
             e.preventDefault();
             this.props.onSortCurrentCategoryItems(sortOption.sortNumber);
         }}>{sortOption.sortName}</Dropdown.Item>);
